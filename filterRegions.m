@@ -12,7 +12,7 @@ function [BW_out,properties] = filterRegions(BW_in)
 BW_out = BW_in;
 
 % Get properties.
-properties = regionprops(BW_out, {'Area', 'Eccentricity', 'EquivDiameter', 'EulerNumber', 'MajorAxisLength', 'MinorAxisLength', 'Orientation', 'Perimeter', 'Centroid', 'Image'});
+properties = regionprops(BW_out, {'Area', 'Eccentricity', 'EquivDiameter', 'EulerNumber', 'MajorAxisLength', 'MinorAxisLength', 'Orientation', 'Perimeter', 'Centroid', 'Image', 'PixelList', 'PixelIdxList'});
 
 % Uncomment the following line to return the properties in a table.
 % properties = struct2table(properties);
