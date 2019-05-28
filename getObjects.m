@@ -1,11 +1,26 @@
 I = imread('IMG_20190514_122346.jpg');
 [BW1,image1] = mask1(I);
 [BW2,image2] = mask2(I);
+%[BW3,image3] = mask_blat_2(I);
+%[BW4,image4] = mask_white_with_blat(I);
+%BW_logical =BW3&BW4;
+[BW5,image5] = mask_odwroc(I);
+[BW6,image6] = mask_white(I);
+[BW7,image7] = mask_proba(I);
+[BW8,image8] = mask_proba2(I);
+[BW9,image9] = mask_zabawa_2(I);
+[BW10,image10] = mask_odwrot_zabawa(I);
+%BW_logical = BW_logical|BW1|BW2;
 
-BW_logical = BW1|BW2;
+BW_logical = ~BW5|BW2;
 BW_double = im2double(BW_logical);
 [BW,maskedImage]=segmentImage(BW_double);
-
+BW=BW | ~BW6|BW8;
+BW_double2 = im2double(BW);
+[BW,maskedImage] = segmentImage2(BW_double2);
+BW_double2 = im2double(BW);
+[BW,maskedImage] = segmentImage3(BW_double2);
+BW=BW|~BW10;
 [BW_out,properties]=filterRegions(BW);
 
 maskedRGBImage = I;
@@ -21,7 +36,7 @@ objects=struct('color',[], 'x', [], 'y', [], 'type', [], 'size_x', [], 'size_y',
 k=1;
 scale=0;
 for i=1:1:n_ele
-   if(properties(i).Area> 500) 
+   if(properties(i).Area> 5000) 
         typ=znajdz_typ(properties(i).Eccentricity);
         if ~strcmp(typ, 'nieznane')
             objects(k).type=typ;
