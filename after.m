@@ -15,25 +15,20 @@ imshow(maskedRGBImage);
 
  n=size(properties);
  n_ele=n(1);
-% figure(1); hold on;
-% for i=1:1:n_ele
-%    if(properties(i).Area> 500)       
-%     plot(properties(i).PixelList(:, 1), properties(i).PixelList(:, 2)); 
-%    end
-% end
-% hold off;
 
 
 objects=struct('color',[], 'x', [], 'y', [], 'type', [], 'size_x', [], 'size_y', [], 'orientation', []);
 k=1;
    
 for i=1:1:n_ele
-   if(properties(i).Area> 500)       
-    objects(k).color=znajdz_kolor(properties(i).Centroid, I);
-    plot(properties(i).PixelList(:, 1), properties(i).PixelList(:, 2));
-   
-    
-    k=k+1;
+   if(properties(i).Area> 500) 
+        typ=znajdz_typ(properties(i).Eccentricity)
+        if typ ~= 'nieznany'
+            objects(k).type=typ;
+             %[objects(k).color, objects(k).x, objects(k).y]=znajdz_kolor(properties(i).PixelList, I); 
+             [objects(k).size_x, objects(k).size_y]=znajdz_rozmiar(properties(i).Image, properties(i).Orientation, typ);
+            k=k+1;
+        end
    end
 end
 
