@@ -18,7 +18,7 @@ if (r+b+g)>550
     color='bialy';
 elseif (r+g+b)<100
     color='czarny';
-elseif (r>110 && r<140) && (g>110 && g<140) && (b>110 && b<140)
+elseif (r>110 && r<150) && (g>110 && g<150) && (b>110 && b<150)
     color='szary';
 elseif r>125 && g<60 && b<60
     color='czerwony';

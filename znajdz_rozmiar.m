@@ -1,6 +1,4 @@
 function [x,y, ori] = znajdz_rozmiar(im, or, typ, dia)
-%UNTITLED4 Summary of this function goes here
-%   Detailed explanation goes here
     if strcmp(typ, 'okrag')
         x=dia; y=dia;
         ori=0;
@@ -10,11 +8,9 @@ function [x,y, ori] = znajdz_rozmiar(im, or, typ, dia)
         %imshow(imr);
         X = props.BoundingBox;
         sort(X);
-        x1 = X(1);
-        x2 = X(2);
+        x1 = X(3);
+        x2 = X(4);
         
-        %x1=max(props.BoundingBox(:,3));
-        %x2=max(props.BoundingBox(:,4));
         x=min(x1, x2);
         y=max(x1, x2);
         size_imr=size(imr);
@@ -24,27 +20,28 @@ function [x,y, ori] = znajdz_rozmiar(im, or, typ, dia)
                 vect_count(i)=vect_count(i)+double(imr(k, i));
             end
         end
-
+% poszukiwanie orientacji - zliczanie w oknie 20 -> wybierany jest ten
+% koniec, ktory ma mniej pixeli jesli lewy to trzeba obrocic o 180 stopni
         k=1;
         while(vect_count(k)==0)
            k=k+1; 
         end
         left=0; right=0;
-        for t=k: 1: k+9
+        for t=k: 1: k+19
             left=left+vect_count(t);
         end
         k=size_imr(2);
         while(vect_count(k)==0)
            k=k-1; 
         end  
-        for t=k: -1: k-9
+        for t=k: -1: k-19
             right=right+vect_count(t);
         end
-        if right>left
+        if right<left
             ori=or;
         else
             ori=or+180;
-            if(ori>360)
+            if(ori>180)
                 ori=ori-360;
             end
         end
