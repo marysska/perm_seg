@@ -26,7 +26,7 @@ for i=1:1:n_ele
         if ~strcmp(typ, 'nieznane')
             objects(k).type=typ;
              objects(k).color=znajdz_kolor_rgb(properties(i).PixelList, I); 
-             [objects(k).size_x, objects(k).size_y]=znajdz_rozmiar(properties(i).Image, properties(i).Orientation, typ, properties(i).EquivDiameter);
+             [objects(k).size_x, objects(k).size_y,objects(k).orientation]=znajdz_rozmiar(properties(i).Image, properties(i).Orientation, typ, properties(i).EquivDiameter);
              objects(k).x=properties(i).Centroid(1);
              objects(k).y=properties(i).Centroid(2);
              if strcmp(typ, 'okrag') && objects(k).size_x>scale
