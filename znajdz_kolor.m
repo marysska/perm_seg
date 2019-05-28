@@ -68,6 +68,6 @@ elseif h<175 && h>60
     color='zielony';
 else
     color='niebieski';
-
+end
 end
 

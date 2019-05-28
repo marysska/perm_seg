@@ -1,7 +1,11 @@
-function [x,y] = znajdz_(im, or, typ)
+function [x,y] = znajdz_rozmiar(im, or, typ, dia)
 %UNTITLED4 Summary of this function goes here
 %   Detailed explanation goes here
-outputArg1 = inputArg1;
-outputArg2 = inputArg2;
+    if('typ'=='okrag')
+        x=dia; y=dia;
+    else
+        imr=imrotate(im, or);
+        
+    end
 end
 
