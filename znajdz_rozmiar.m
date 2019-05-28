@@ -7,7 +7,7 @@ function [x,y, ori] = znajdz_rozmiar(im, or, typ, dia)
     else
         imr=imrotate(im, -1*or);
         props=regionprops(imr, {'BoundingBox'});
-        imshow(imr);
+        %imshow(imr);
         x1=props.BoundingBox(3);
         x2=props.BoundingBox(4);
         x=min(x1, x2);
