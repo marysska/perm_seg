@@ -10,18 +10,18 @@ BW_double = im2double(BW_logical);
 
 maskedRGBImage = I;
 maskedRGBImage(repmat(~BW,[1 1 3])) = 0;
-%imshow(maskedRGBImage);
+imshow(maskedRGBImage);
 
 
-n=size(properties);
-n_ele=n(1);
-figure(1); hold on;
-for i=1:1:n_ele
-   if(properties(i).Area> 500)       
-    plot(properties(i).PixelList(:, 1), properties(i).PixelList(:, 2)); 
-   end
-end
-hold off;
+ n=size(properties);
+ n_ele=n(1);
+% figure(1); hold on;
+% for i=1:1:n_ele
+%    if(properties(i).Area> 500)       
+%     plot(properties(i).PixelList(:, 1), properties(i).PixelList(:, 2)); 
+%    end
+% end
+% hold off;
 
 
 objects=struct('color',[], 'x', [], 'y', [], 'type', [], 'size_x', [], 'size_y', [], 'orientation', []);
